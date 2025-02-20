@@ -18,6 +18,8 @@ builder.Services.AddScoped<Application.Interfaces.IDhtSensorService, Application
 builder.Services.AddScoped<Domain.Interfaces.IDhtSensorRepository, Infrastructure.Repositories.DhtSensorRepository>();
 builder.Services.AddScoped<Application.Interfaces.IEventService, Application.Services.EventService>();
 builder.Services.AddScoped<Domain.Interfaces.IEventRepository, Infrastructure.Repositories.EventRepository>();
+builder.Services.AddScoped<Application.Interfaces.IActuatorService, Application.Services.ActuatorService>();
+builder.Services.AddScoped<Domain.Interfaces.IActuatorRepository, Infrastructure.Repositories.ActuatorRepository>();
 
 
 
