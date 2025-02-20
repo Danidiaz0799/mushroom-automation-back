@@ -20,6 +20,7 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<DhtSensor>> GetAllAsync(int page, int pageSize)
         {
             return await _context.DhtSensors
+                .OrderByDescending(sensor => sensor.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();

@@ -16,6 +16,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<Application.Interfaces.IDhtSensorService, Application.Services.DhtSensorService>();
 builder.Services.AddScoped<Domain.Interfaces.IDhtSensorRepository, Infrastructure.Repositories.DhtSensorRepository>();
+builder.Services.AddScoped<Application.Interfaces.IEventService, Application.Services.EventService>();
+builder.Services.AddScoped<Domain.Interfaces.IEventRepository, Infrastructure.Repositories.EventRepository>();
+
+
 
 // Add CORS services
 builder.Services.AddCors(options =>

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 
-
 namespace Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
@@ -9,6 +8,7 @@ namespace Infrastructure.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<DhtSensor> DhtSensors { get; set; }
+        public DbSet<Event> Events { get; set; } // Add this line
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace Infrastructure.Data
             {
                 entity.ToTable("DhtSensors");
 
-                entity.HasKey(e => e.Id); // Define la clave primaria
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Timestamp)
                       .IsRequired();
@@ -30,6 +30,19 @@ namespace Infrastructure.Data
                 entity.Property(e => e.Humidity)
                       .IsRequired()
                       .HasColumnType("decimal(5,2)");
+            });
+
+            modelBuilder.Entity<Event>(entity => // Add this block
+            {
+                entity.ToTable("Events");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Message)
+                      .IsRequired();
+
+                entity.Property(e => e.Timestamp)
+                      .IsRequired();
             });
         }
     }
